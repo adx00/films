@@ -7,7 +7,7 @@ function Sort({ fetchParams, setFetchParams, showAll, setFilms }) {
       setFilms([]);
       setFetchParams({
         ...fetchParams,
-        page: 1,
+        page: 0,
         page_size: 20,
         sort_field: options[e.target.value].title,
         sort_order: options[e.target.value].direction,

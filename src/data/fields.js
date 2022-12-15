@@ -1,4 +1,5 @@
 const fields = [
+  'id',
   'adult',
   'belongs_to_collection',
   'budget',

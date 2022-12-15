@@ -12,7 +12,7 @@ function Search({
 
     setFetchParams({
       ...fetchParams,
-      page: 1,
+      page: 0,
       search: e.target.value,
     });
   };

@@ -7,14 +7,14 @@ function Limit({ fetchParams, setFetchParams, setShowAll, setFilms }) {
       setFilms([]);
       setFetchParams({
         ...fetchParams,
-        page: 1,
+        page: 0,
         page_size: 20,
       });
     } else {
       setShowAll(false);
       setFetchParams({
         ...fetchParams,
-        page: 1,
+        page: 0,
         page_size: +e.target.value,
       });
     }

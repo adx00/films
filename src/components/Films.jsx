@@ -12,12 +12,14 @@ function Films() {
   const [films, setFilms] = useState([]);
   const [totalCountFilms, setTotalCountFilms] = useState(0);
   const [activeFields, setActiveFields] = useState([
+    'id',
     'title',
     'budget',
     'overview',
     'genres',
   ]);
   const [fetchParams, setFetchParams] = useState({
+    page: 0,
     page_size: 10,
     search: '',
   });
@@ -38,9 +40,9 @@ function Films() {
           setFilms(json.data);
         }
         if (!fetchParams.search) {
-          setTotalCountFilms(json.data_size - 33);
+          setTotalCountFilms(json.data_size);
         } else {
-          setTotalCountFilms(json.data_size - 10);
+          setTotalCountFilms(json.data_size);
         }
       })
       .catch((error) => {
@@ -64,7 +66,8 @@ function Films() {
         400 &&
       showAll &&
       !isLoading &&
-      !bottomScrollInit
+      !bottomScrollInit &&
+      films.length < totalCountFilms
     ) {
       bottomScrollInit = !bottomScrollInit;
 

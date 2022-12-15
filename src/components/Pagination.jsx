@@ -16,7 +16,7 @@ function Pagination({
     if (+e.target.value !== 1) {
       setFetchParams({
         ...fetchParams,
-        page: +e.target.value,
+        page: +e.target.value - 1,
       });
     } else {
       setFetchParams((prevPrevFetchParams) => {
@@ -26,14 +26,8 @@ function Pagination({
     }
   };
   return (
-    <div
-      className={
-        showAll || totalCountFilms === 0
-          ? 'hidden'
-          : 'pagination flex justify-content-center'
-      }
-    >
-      <div className={!pages.length ? 'hidden' : 'flex'}>
+    <div className="pagination flex justify-content-center">
+      <div className={!pages.length || showAll ? 'hidden' : 'flex'}>
         <h2 className="lh-0 mr-10">Page</h2>
         <select defaultValue={fetchParams.page} onChange={pageHandler}>
           {pages.map((pageNum) => (
@@ -43,7 +37,7 @@ function Pagination({
           ))}
         </select>
       </div>
-      <div className={!pages.length ? 'hidden' : 'flex'}>
+      <div className={!pages.length || showAll ? 'hidden' : 'flex'}>
         <h2 className="lh-0 ml-50 mr-10">
           <span className="mr-10">Pages</span>
           <span className="white">{pages.length}</span>

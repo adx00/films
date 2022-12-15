@@ -8,8 +8,9 @@ function DisplayFileds({ activeFields, setActiveFields }) {
       <ul>
         {fields.map((field) => (
           <li key={field}>
-            <label>
+            <label htmlFor={field}>
               <input
+                id={field}
                 checked={activeFields.includes(field) ? true : false}
                 type="checkbox"
                 onChange={(e) => {
