@@ -142,7 +142,9 @@ function Films() {
         </thead>
         <tbody>
           {films.map((film) =>
-            film.overview.includes(filterParams.overview) ? (
+            (film.overview ? film.overview : '').includes(
+              filterParams.overview
+            ) ? (
               <Film key={film.id} film={film} activeFields={activeFields} />
             ) : (
               ''
