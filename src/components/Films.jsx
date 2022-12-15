@@ -6,6 +6,7 @@ import Sort from './Sort';
 import Limit from './Limit';
 import DisplayFileds from './DisplayFileds';
 import ucFirst from '../utils/ucFirst';
+import Filter from './Filter';
 
 function Films() {
   const [isLoading, setIsLoading] = useState(true);
@@ -18,6 +19,9 @@ function Films() {
     'overview',
     'genres',
   ]);
+  const [filterParams, setFilterParams] = useState({
+    overview: '',
+  });
   const [fetchParams, setFetchParams] = useState({
     page: 0,
     page_size: 10,
@@ -88,6 +92,12 @@ function Films() {
     <div className="wrapper">
       <div className="attributes">
         <div className="flex space-between mw-1200 margin-0-auto">
+          <Filter
+            filterParams={filterParams}
+            setFilterParams={setFilterParams}
+            films={films}
+            setFilms={setFilms}
+          />
           <Limit
             fetchParams={fetchParams}
             setFetchParams={setFetchParams}
@@ -131,9 +141,13 @@ function Films() {
           </tr>
         </thead>
         <tbody>
-          {films.map((film) => (
-            <Film key={film.id} film={film} activeFields={activeFields} />
-          ))}
+          {films.map((film) =>
+            film.overview.includes(filterParams.overview) ? (
+              <Film key={film.id} film={film} activeFields={activeFields} />
+            ) : (
+              ''
+            )
+          )}
         </tbody>
       </table>
       {isLoading && <div className="preloader"></div>}
